@@ -36,6 +36,74 @@ PRECIOS = {
 
 id = 0
 idTurno = 0
+fig = Figlet(font="doom")
+
+# funciones de validacion
+def validar_no_vacio(mensaje):
+    while True:
+        valor = input(mensaje).strip()
+        if valor:
+            return valor
+        print("Error: El campo no puede estar vacio.")
+
+def validar_entero_positivo(mensaje):
+    while True:
+        valor = input(mensaje).strip()
+        try:
+            num = int(valor)
+            if num > 0:
+                return num
+            print("Error: Debe ingresar un numero entero positivo.")
+        except ValueError:
+            print("Error: Debe ingresar un numero entero valido.")
+
+def validar_numerico_positivo(mensaje):
+    while True:
+        valor = input(mensaje).strip()
+        try:
+            num = float(valor)
+            if num > 0:
+                return num
+            print("Error: Debe ingresar un numero positivo.")
+        except ValueError:
+            print("Error: Debe ingresar un valor numerico valido.")
+
+def validar_dni(mensaje):
+    while True:
+        dni = input(mensaje).strip()
+        if dni.isdigit() and 7 <= len(dni) <= 8:
+            return dni
+        print("Error: El DNI debe contener entre 7 y 8 digitos numericos.")
+
+def validar_telefono(mensaje):
+    while True:
+        tel = input(mensaje).strip()
+        if tel.isdigit() and len(tel) >= 8:
+            return tel
+        print("Error: El telefono debe contener al menos 8 digitos numericos.")
+
+def validar_fecha(mensaje):
+    while True:
+        fecha = input(mensaje).strip()
+        try:
+            datetime.strptime(fecha, "%d/%m/%Y")
+            return fecha
+        except ValueError:
+            print("Error: La fecha debe tener el formato DD/MM/AAAA.")
+
+def validar_hora(mensaje):
+    while True:
+        hora = input(mensaje).strip()
+        try:
+            datetime.strptime(hora, "%H:%M")
+            return hora
+        except ValueError:
+            print("Error: La hora debe tener el formato HH:MM.")
+
+
+# funciones de utilidad
+def limpiar_pantalla():
+    os.system("cls" if os.name == "nt" else "clear")
 
 # funciones de validacion
 def validar_no_vacio(mensaje):
